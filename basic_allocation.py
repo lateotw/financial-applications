@@ -51,10 +51,14 @@ for ticker in all_assets:
 # Calculate return & risk
 simple_return = prices.pct_change()
 asset_volatility = simple_return.std() * math.sqrt(252)
-cumulative_return =
-cumulative_return.plot()
+# cumulative_return =
+# cumulative_return.plot()
 
-# optimizer
+print(simple_return.corr())
+
+# Allocation
+
+
 # target_risk = float(input("e.g. 0.10"))
 # target_return = float(input("e.g. 0.10, meaning 10% per year"))
 
