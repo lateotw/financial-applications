@@ -38,7 +38,7 @@ plt.show()
 # Define the investment universe
 
 # Bond: aggregate, high yield, investment grade
-# bond_tickers = ['AGG', 'HYG', '?LQD']
+bond_tickers = ['AGG', 'HYG', '?LQD']
 
 # Equity: US large cap, US small cap, Europe, Japan, Emerging Market
 # stock_tickers = ['SPY', '?russell 2000', '']
