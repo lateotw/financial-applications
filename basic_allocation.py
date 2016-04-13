@@ -1,8 +1,9 @@
 """
-The objective of this tool is for anybody to be able to run the script and
-figure out a sensible investment allocation level.
+This script retrieves end of day prices and run a portfolio allocation
+analysis.
 
 Disclaimer:
+
 Use at your own risk, but I have done my best to be as transparent as
 possible.
 """
