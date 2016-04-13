@@ -4,52 +4,58 @@ figure out a sensible investment allocation level.
 
 Disclaimer:
 Use at your own risk, but I have done my best to be as transparent as
-possible. Nothing here is my innovation, optimization has been used
-for decades within the financial investment industry, either successfully
-or unsuccessfully. With the proliferation of open source software, data
-and technology, everybody should have access to a financial investment
-optimizer.
+possible.
 """
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas_datareader.data as web
 import datetime
+import math
 
 
-def download_return(ticker, start, end):
+def download_price(ticker, start, end):
     # download adjusted close price from yahoo finance
 
     data = web.DataReader(ticker, 'yahoo', start, end)
-    log_return = np.log(data['Adj Close'] / data['Adj Close'].shift(1))
-    return log_return
+    return data['Adj Close'].rename(ticker)
 
 
 start_date = datetime.datetime(2010, 1, 1)
 end_date = datetime.datetime.today().date()
 
-ticker = 'AGG'
-
-download_return(ticker, start_date, end_date).plot()
-
-plt.show()
-
-
 # Define the investment universe
 
-# Bond: aggregate, high yield, investment grade
-bond_tickers = ['AGG', 'HYG', '?LQD']
+bond_tickers = ['AGG',  # aggregate
+                'HYG',  # high yield
+                'LQD']  # investment grade
 
-# Equity: US large cap, US small cap, Europe, Japan, Emerging Market
-# stock_tickers = ['SPY', '?russell 2000', '']
 
-# Real Estate:
+stock_tickers = ['SPY',  # US large cap
+                 'IWM',  # US small cap
+                 'VGK',  # Europe
+                 'EWJ',  # Japan
+                 'VWO']  # Emerging Market
 
-# Commodities:
+real_estate_tickers = ['VNQ']   # REIT
 
-# calculate individual security performance and risk
 
+all_assets = bond_tickers + stock_tickers + real_estate_tickers
+
+# Download prices
+prices = pd.DataFrame()
+for ticker in all_assets:
+    prices[ticker] = download_price(ticker, start_date, end_date)
+
+# Calculate return & risk
+simple_return = prices.pct_change()
+asset_volatility = simple_return.std() * math.sqrt(252)
+cumulative_return =
+cumulative_return.plot()
 
 # optimizer
 # target_risk = float(input("e.g. 0.10"))
 # target_return = float(input("e.g. 0.10, meaning 10% per year"))
+
+#TODO: add a data feed from quandl
