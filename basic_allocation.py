@@ -64,3 +64,5 @@ print(simple_return.corr())
 # target_return = float(input("e.g. 0.10, meaning 10% per year"))
 
 #TODO: add a data feed from quandl
+#TODO: run an optimization to minize risk
+
